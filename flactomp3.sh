@@ -2,6 +2,8 @@
 
 if [ $# -eq 2 ]; then
 
+formatin="flac";
+formatsout="mp3";
 inputd=$1;
 outputd=$2;
 
@@ -9,13 +11,13 @@ outputd=$2;
 
 		for fichier in $inputd* ;
 		do
-			if ! [[ -d $fichier ]] && [[ "${fichier#*.}" = "flac" ]]; then
+			if ! [[ -d $fichier ]] && [[ "${fichier#*.}" = $formatin ]]; then
 				echo "------------------------------------"
 				echo  Fichier: $fichier;
 				#fichierf=$(echo $fichier | sed 's/ /\\ /g');
 				#echo $fichierf;
 
-				lame -V2 -b 320 "$fichier" "${fichier%%.*}.mp3";
+				lame -V2 -b 320 "$fichier" "${fichier%%.*}.$formatout";
 			fi
 		done
 
