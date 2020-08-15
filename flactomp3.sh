@@ -7,15 +7,15 @@ outputd=$2;
 
 	if [ -d $inputd ] && [ -d $outputd ]; then
 
-		for fichier in * ;
+		for fichier in $inputd* ;
 		do
 			if ! [[ -d $fichier ]] && [[ "${fichier#*.}" = "flac" ]]; then
 				echo "------------------------------------"
-				echo $fichier;
+				echo  Fichier: $fichier;
 				#fichierf=$(echo $fichier | sed 's/ /\\ /g');
 				#echo $fichierf;
 
-				exec `lame -V2 -b 320 "$fichier" "${fichier%%.*}.mp3"`;
+				lame -V2 -b 320 "$fichier" "${fichier%%.*}.mp3";
 			fi
 		done
 
